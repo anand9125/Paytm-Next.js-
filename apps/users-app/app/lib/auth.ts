@@ -7,7 +7,7 @@ import { JWT } from "next-auth/jwt";
 
 const CredentialsSchema = z.object({
   phone: z.string().min(10, "Invalid phone number").max(15, "Invalid phone number"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  password: z.string().min(5, "Password must be at least 5 characters"),
 });
 
 export const authOptions = {
@@ -35,7 +35,7 @@ export const authOptions = {
             return {
               id: existingUser.id.toString(),
               name: existingUser.name,
-              email: existingUser.number,
+              number: existingUser.number,
             };
           }
           throw new Error("Invalid credentials");
@@ -52,7 +52,7 @@ export const authOptions = {
           return {
             id: newUser.id.toString(),
             name: newUser.name,
-            email: newUser.number,
+            email: newUser.number||" ",
           };
         } catch (error) {
           console.error(error);
@@ -69,7 +69,6 @@ export const authOptions = {
           ...session.user
         };
       }
-
       return session;
     },
   },
