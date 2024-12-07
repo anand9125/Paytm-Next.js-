@@ -3,9 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { Providers } from "./provider";
-
 const inter = Inter({ subsets: ["latin"] });
-
+import AppbarItem from "components/AppbarItem";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -26,9 +25,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    
     <html lang="en">
       <Providers>
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+        <AppbarItem ></AppbarItem>
+          {children}</body>
       </Providers>
     </html>
   );
