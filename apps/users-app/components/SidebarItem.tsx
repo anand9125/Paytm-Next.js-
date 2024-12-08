@@ -8,10 +8,10 @@ export const SidebarItem = ({ href, title, icon }: { href: string; title: string
     console.log(pathname)
     const selected = pathname === href  //pathname:This variable holds the current URL path
 
-    return <div className={` flex ${selected ?  "text-purple-600" : "text-slate-500"} cursor-pointer  p-2 pl-8`} onClick={() => {
+    return <div className={` flex  ${selected ?  "text-purple-600" : "text-slate-500"} cursor-pointer  p-2 pl-8`} onClick={() => {
         router.push(href);
     }}>
-        <div className="">
+        <div className="pr-2">
             {icon}
         </div>
         <div className={`font-bold ${selected ? "text-purple-600" : "text-slate-500"}`}>

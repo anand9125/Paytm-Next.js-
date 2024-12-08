@@ -5,6 +5,9 @@ import { TextInput } from '@repo/ui/TextInput'
 import { Select } from '@repo/ui/Select'
 import { Center } from '@repo/ui/Center'
 import { Button } from '@repo/ui/button'
+import { onRampTrasnition } from 'app/lib/actions/createOnramptransitios'
+import { number } from 'zod'
+
 const SUPPORT_BANKS=[{
     name:"HDFC BANK",
     redirectURl:"https://netbanking.hdcbank.com"
@@ -17,21 +20,27 @@ const SUPPORT_BANKS=[{
 function AddMoneyCard() {
     const[redirectURl,setRedirectUrl] = useState(SUPPORT_BANKS[0]?.redirectURl) //optional chaining  SUPPORT_BANKS is empty, SUPPORT_BANKS[0] will be undefined.
 //?. operator checks if the left-hand side (SUPPORT_BANKS[0]) is null or undefined before accessing redirectURl. If SUPPORT_BANKS[0] is undefined, the entire expression evaluates to undefined without throwing an error.
-  console.log(redirectURl)
+   const [amount,setAmount] = useState(0)
+   const[provider,setProvider] = useState(SUPPORT_BANKS[0]?.name||"")
+   console.log(redirectURl)
+   console.log(amount)
+   console.log(provider)
   return (
     <Card title={"Add Money"}>
      <div className='w-full'>
-       <TextInput placeholder={"Amount"} label='Amount' onChange={()=>{}}></TextInput>
+       <TextInput placeholder={"Amount"} label='Amount' onChange={(value)=>{setAmount(parseInt(value, 10))}}></TextInput>
      </div>
      <div className='pt-3'>Bank</div>
       <Select Selected={(value)=>{
         setRedirectUrl(SUPPORT_BANKS.find(x=>x.name==value)?.redirectURl||"")
+        setProvider(SUPPORT_BANKS.find(x=>x.name==value)?.name||"")
       }} options={SUPPORT_BANKS.map(x=>({
         key:x.name,
         value:x.name
       }))}></Select>
       <div className='mt-4 flex justify-center'>
-      <Button  onClick={()=>{
+      <Button  onClick={async()=>{
+         await onRampTrasnition(amount*100,provider)
         window.location.href=redirectURl||""
       }}>Add Money</Button>
       </div>
