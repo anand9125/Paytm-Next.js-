@@ -44,7 +44,8 @@ async function page() {
           <div className="flex-1">
           <BalanceCard amount={balance.amount } locked={balance.locked} />
           <div className="pt-4">
-          <OnRampTransactions transactions={transactions}></OnRampTransactions>
+          <OnRampTransactions transactions={transactions}
+          ></OnRampTransactions>
         </div>
        </div>
       </div>

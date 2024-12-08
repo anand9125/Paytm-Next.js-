@@ -49,7 +49,7 @@ model onRanpTransition{
 
 enum OnRampStatus{
   Success
-  failure
+  Failure
   Processing
 }
 

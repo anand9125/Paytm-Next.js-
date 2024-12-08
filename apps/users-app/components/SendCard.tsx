@@ -5,6 +5,7 @@ import { TextInput } from '@repo/ui/TextInput'
 import { Button } from '@repo/ui/button'
 import { p2pTransfer } from 'app/lib/actions/p2ptransfer'
 import { number } from 'zod'
+import Card from '@repo/ui/Card'
 function SendCard() {
   const[number,setNumber]=useState("")
   const[amount,setAmount]=useState("")
@@ -13,7 +14,7 @@ function SendCard() {
   return (
      
         <Center>
-          
+          <Card title="Send">
             <div className=''>
               <TextInput placeholder={'9125911042'} label={"Number"} onChange={(value)=>{setNumber(value)
               }}>
@@ -27,6 +28,7 @@ function SendCard() {
               }}>Send</Button>
              </div>
           </div>
+          </Card>
     </Center>
       
   )

@@ -1,6 +1,7 @@
 import Card from '@repo/ui/Card';
 import React from 'react';
 
+
 export const OnRampTransactions = ({
     transactions
 }: {
@@ -20,20 +21,20 @@ export const OnRampTransactions = ({
         </Card>
     }
     return <Card title="Recent Transactions">
-        <div className="pt-2">
-            {transactions.map(t => <div className="flex justify-between">
-                <div>
-                    <div className="text-sm">
-                        Received INR
-                    </div>
-                    <div className="text-slate-600 text-xs">
-                        {t.time.toDateString()}
-                    </div>
-                </div>
-                <div className="flex flex-col justify-center">
-                    + Rs {t.amount / 100}
-                </div>
-
+        <div className="pt-2 ">
+            {transactions.map(t => <div className="flex justify-between  border-b border-slate-300">
+                   <div >
+                     {t.status=="Success" ?(
+                           <div className="text-sm"> Received INR </div>):(
+                           <div className='text-sm'>{t.status}</div>
+                            )}
+                           <div className="text-slate-600 text-xs">
+                            {t.time.toDateString()}
+                           </div>
+                   </div>
+                   <div className="flex flex-col justify-center">
+                     + Rs {t.amount / 100}
+                   </div>
             </div>)}
         </div>
     </Card>
