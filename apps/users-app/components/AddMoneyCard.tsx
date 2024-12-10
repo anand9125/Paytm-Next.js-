@@ -7,6 +7,7 @@ import { Center } from '@repo/ui/Center'
 import { Button } from '@repo/ui/button'
 import { onRampTrasnition } from 'app/lib/actions/createOnramptransitios'
 import { number } from 'zod'
+import Swal from 'sweetalert2'
 
 const SUPPORT_BANKS=[{
     name:"HDFC BANK",
@@ -44,9 +45,7 @@ function AddMoneyCard() {
         window.location.href=redirectURl||""
       }}>Add Money</Button>
       </div>
-
-      
-    
+  
     </Card>
           
   )

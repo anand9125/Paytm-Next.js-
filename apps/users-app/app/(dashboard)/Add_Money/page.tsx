@@ -36,8 +36,8 @@ async function page() {
    const transactions = await getOnRampTransactions()
 
   return (<div className='w-full'>
-    <div className='text-2xl text-purple-600 font-semibold ml-4 pt-9'>Trasnfer </div>
-       <div className="flex justify-between gap-4">
+    <div className='text-2xl text-purple-600 font-semibold ml-4 '>Add Money By Bank</div>
+       <div className="flex justify-between gap-4 pt-9">
           <div className="flex-1">
           <AddMoneyCard />
           </div>

@@ -2,8 +2,10 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth";
 import prisma from "@repo/db/client";
-
+import Swal from "sweetalert2";
+import { showSwalAlert } from "components/Showalert";
 export async function p2pTransfer(to: string, amount: number) {
+    
     const session = await getServerSession(authOptions);
     const from = session?.user?.id;
     if (!from) {
@@ -21,6 +23,11 @@ export async function p2pTransfer(to: string, amount: number) {
         return {
             message: "User not found"
         }
+    }
+    if(!amount ||!to){
+      return{
+        message:"Please provide the data"
+      }
     }
     await prisma.$transaction(async (tx) => {
         await tx.$queryRaw`SELECT * FROM "Balance" WHERE "userId" = ${Number(from)} FOR UPDATE`;
@@ -47,11 +54,12 @@ export async function p2pTransfer(to: string, amount: number) {
                 toUserId:toUser.id,
                 amount,
                 timestamp:new Date()
-
             }
           })
        
-    });
+    })
+    return  showSwalAlert("success", "Done", "Payment has been completed successfully.", '<a href="#">Why do I have this issue?</a>');
+    showSwalAlert("error", "Error", "Something went wrong with the transfer.", '<a href="#">Contact support</a>');
 }
 
 //what is ts and waht is uyse here
